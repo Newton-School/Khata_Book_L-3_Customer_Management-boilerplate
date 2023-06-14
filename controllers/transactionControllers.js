@@ -16,21 +16,9 @@ const newTransaction = async (req, res) => {
     });
     await transaction.save();
 
-    // Find the customer
-    const foundCustomer = await Customer.findById(customer);
-    if (!foundCustomer) {
-      return res.status(404).json({ error: 'Customer not found' });
-    }
-    // Update the customer's outstanding balance
-    if (type === 'expense') {
-      foundCustomer.outstandingBalance += amount;
-    } else {
-      foundCustomer.outstandingBalance -= amount;
-    }
-    foundCustomer.transactionHistory.push(transaction);
-    await foundCustomer.save();
-
-    res.status(201).json(transaction);
+    // Write a code to
+    // 1) Find the customer
+    // 2)Update the customer's outstanding balance
   } catch (error) {
     res.status(400).json({ message: 'Bad request' });
   }
@@ -38,12 +26,12 @@ const newTransaction = async (req, res) => {
 
 const getAllTransaction = async (req, res) => {
   try {
-    const transactions = await Transaction.find()
-      .populate('category')
-      .populate(
-        'customer',
-        'name contactDetails transactionHistory outstandingBalance'
-      );
+    const transactions = await Transaction.find().populate('category');
+    //Write a code here to populate a customer
+    // .populate(
+    //   'customer',
+    //   'name contactDetails transactionHistory outstandingBalance'
+    // );
     res.status(201).json(transactions);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });

@@ -4,10 +4,7 @@ const Customer = require('../models/customerModel');
 
 const newCustomer = async (req, res) => {
   try {
-    const { name, contactDetails } = req.body;
-    const customer = new Customer({ name, contactDetails });
-    await customer.save();
-    res.status(201).json(customer);
+    //Write a code here
   } catch (error) {
     res.status(400).json({ message: 'Bad request' });
   }
@@ -15,8 +12,7 @@ const newCustomer = async (req, res) => {
 
 const getAllCustomers = async (req, res) => {
   try {
-    const customers = await Customer.find();
-    res.json(customers);
+    //Write a code here
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
